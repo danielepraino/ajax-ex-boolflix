@@ -1,0 +1,76 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Kanit', sans-serif;
+}
+
+li {
+  list-style-type: none;
+}
+
+.boolflix-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.menu {
+  flex-grow: 1;
+  background-color: #E6E6E6;
+}
+
+.menu-icons {
+  font-size: 30px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-icons li {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.boolflix {
+  flex-grow: 20;
+  background-color: black;
+}
+
+.search {
+  margin: 25px 0 0 50px;
+}
+
+.input-search {
+  font-size: 20px;
+  font-family: 'Kanit', sans-serif;
+  text-align: right;
+  cursor: pointer;
+}
+
+.btn {
+  color: #E6E6E6;
+  background-color: rgba(256,256,256, .2);
+  font-size: 20px;
+  font-family: 'Kanit', sans-serif;
+  border-radius: 5px;
+  border-style: none;
+  margin-left: 20px;
+  padding: 2px 20px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: #000;
+  background-color: #E6E6E6;
+}
+
+.card {
+  width: 300px;
+  background-color: #E6E6E6;
+  margin: 50px;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>ajax-ex-boolflix</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="boolflix-container">
+        <div class="menu">
+          <ul class="menu-icons">
+            <li><i class="fas fa-search"></i></li>
+            <li><i class="fas fa-home"></i></li>
+          </ul>
+        </div>
+        <div class="boolflix">
+          <div class="search">
+            <input class="input-search" type="search" placeholder="Cerca">
+            <button class="btn" type="button"><i class="fas fa-play"></i> Vai</button>
+          </div>
+          <div class="main"></div>
+        </div>
+      </div>
+    </div>
+
+    <script id="card-template" type="text/x-handlebars-template">
+      <div class="card">
+        <img class="card-img" src="https://image.tmdb.org/t/p/w300{{img}}" alt="">
+        <h4>Titolo: <span>{{title}}</span></h4>
+        <h5>Titolo originale: <span>{{originalTitle}}</span></h5>
+        <p>Lingua: <span>{{language}}</span></p>
+        <p>Voto: <span>{{vote}}</span></p>
+      </div>
+    </script>
+
+    <script src="script.js" charset="utf-8"></script>
+
+    </script>
+  </body>
+</html>
