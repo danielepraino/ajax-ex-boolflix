@@ -5,6 +5,7 @@ var movieTemplate = Handlebars.compile(cardTemplate);
 
 //creo l'oggetto da passare poi ad handlebarjs
 var card = {
+  cardNum: 0,
   img: "",
   title: "",
   originalTitle: "",
@@ -26,11 +27,18 @@ function callIMBDAPI(titleName){
     },
     success: function(obj) {
       var cardInfo = obj.results;
-      card.title = cardInfo[0].title;
-      card.originalTitle = cardInfo[0].original_title;
-      card.language = cardInfo[0].original_language;
-      card.vote = cardInfo[0].vote_average;
-      card.img = cardInfo[0].poster_path;
+      console.log("cardInfo: " + cardInfo.length);
+      for (var i = 0; i < cardInfo.length; i++) {
+        card.cardNum = i;
+        card.img = cardInfo[i].poster_path;
+        card.title = cardInfo[i].title;
+        card.originalTitle = cardInfo[i].original_title;
+        card.language = cardInfo[i].original_language;
+        card.vote = cardInfo[i].vote_average;
+        $(".main").append(movieTemplate(card));
+        setFlag(cardInfo[i].original_language, i);
+        setScore(cardInfo[i].vote_average, i);
+      }
       console.log("card.title: " + card.title);
       console.log(cardInfo);
     },
@@ -42,19 +50,19 @@ function callIMBDAPI(titleName){
 
 //creo una funzione che converte il punteggio in un range da 1 a 5 e lo arrotonda
 //in base al punteggio assegno le stelline
-function setScore(titleScore){
+function setScore(titleScore, j){
   var prepared = Math.round(titleScore)/2;
   for (var i = 1; i <= prepared; i++) {
-    $(".star[data-star=" + i + "]").find("i").removeClass("far").addClass("fas yellow");
+    $(".card[data-card=" + j + "]").find($(".star[data-star=" + i + "] i")).removeClass("far").addClass("fas yellow");
   }
 }
 
 //NOTA: problema lingua da iso 639-1 a 639-2 da risolvere
-function setFlag(titleLanguage){
+function setFlag(titleLanguage, j){
   if (titleLanguage == "en"){
-    $(".flag").find("span").addClass("flag-icon flag-icon-gb");
+    $(".card[data-card=" + j + "]").find(".flag span").addClass("flag-icon flag-icon-gb");
   } else {
-    $(".flag").find("span").addClass("flag-icon flag-icon-" + titleLanguage);
+    $(".card[data-card=" + j + "]").find(".flag span").addClass("flag-icon flag-icon-" + titleLanguage);
   }
 }
 
@@ -68,11 +76,6 @@ function searchTitle() {
   if (searchedTitle != "") {
     console.log("searchedTitle: " + searchedTitle);
     callIMBDAPI(searchedTitle);
-    setTimeout(function(){
-      $(".main").append(movieTemplate(card));
-      setFlag(card.language);
-      setScore(card.vote);
-    }, 500);
   }
 }
 

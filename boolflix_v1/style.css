@@ -45,6 +45,11 @@ li {
   margin: 25px 0 0 50px;
 }
 
+.main {
+  display: flex;
+  overflow-x: auto;
+}
+
 .input-search {
   font-size: 20px;
   font-family: 'Kanit', sans-serif;
@@ -72,7 +77,7 @@ li {
 .card {
   width: 300px;
   background-color: #E6E6E6;
-  margin: 50px;
+  margin: 50px 0 50px 50px;
 }
 
 .card-info {
