@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -31,10 +32,20 @@
     <script id="card-template" type="text/x-handlebars-template">
       <div class="card">
         <img class="card-img" src="https://image.tmdb.org/t/p/w300{{img}}" alt="">
-        <h4>Titolo: <span>{{title}}</span></h4>
-        <h5>Titolo originale: <span>{{originalTitle}}</span></h5>
-        <p>Lingua: <span>{{language}}</span></p>
-        <p>Voto: <span>{{vote}}</span></p>
+        <div class="card-info">
+          <h3>Titolo: <span>{{title}}</span></h3>
+          <h5>Titolo originale: <span>{{originalTitle}}</span></h5>
+          <p class="flag">Lingua: <span class="flag-icon flag-icon-en"></span></p>
+          <div class="star-container">Voto:
+            <ul class="stars">
+              <li class="star" data-star=1><i class="far fa-star"></i></li>
+              <li class="star" data-star=2><i class="far fa-star"></i></li>
+              <li class="star" data-star=3><i class="far fa-star"></i></li>
+              <li class="star" data-star=4><i class="far fa-star"></i></li>
+              <li class="star" data-star=5><i class="far fa-star"></i></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </script>
 

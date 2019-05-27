@@ -74,3 +74,19 @@ li {
   background-color: #E6E6E6;
   margin: 50px;
 }
+
+.card-info {
+  padding: 20px;
+}
+
+.star-container, .stars {
+  display: flex;
+}
+
+.stars {
+  margin-left: 10px;
+}
+
+.star, .fa-star.yellow {
+  color: #f1c40f;
+}
