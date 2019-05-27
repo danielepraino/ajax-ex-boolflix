@@ -58,11 +58,11 @@ function setFlag(titleLanguage){
   }
 }
 
-//al click del bottone faccio una chiamata all'API di IMDB e creo una card che contiene
+//al click del bottone, o all'invio, faccio una chiamata all'API di IMDB e creo una card che contiene
 //tutti i dati relativi al film cercato. Ho notato che c'è un piccolo ritardo nella chiamata
 //se genero la card instantaneamente sarà vuota, ho dovuto quindi inserire un setTimeout
 //per compensare il ritardo e aspettare che la chiamata sia completata
-$(".btn").click(function(){
+function searchTitle() {
   $(".main").empty();
   var searchedTitle = $(".input-search").val();
   if (searchedTitle != "") {
@@ -73,5 +73,15 @@ $(".btn").click(function(){
       setFlag(card.language);
       setScore(card.vote);
     }, 500);
+  }
+}
+
+$(".btn").click(function(){
+  searchTitle();
+});
+
+$(".input-search").keypress(function(event) {
+  if(event.which == 13) {
+    searchTitle();
   }
 });
