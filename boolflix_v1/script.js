@@ -13,7 +13,8 @@ var card = {
   title: "",
   originalTitle: "",
   language: "",
-  vote: ""
+  vote: "",
+  overview: ""
 };
 
 //creo la funzione per richiamare l'API di IMDB, passandogli la chiave api e la query
@@ -61,10 +62,25 @@ function addCardData(obj, arr){
     }
     card.language = cardInfo[i].original_language;
     card.vote = cardInfo[i].vote_average;
+    if (cardInfo[i].overview == ""){
+      card.overview = "n/a";
+    } else {
+      card.overview = cardInfo[i].overview;
+    }
     $(".main").append(movieTemplate(card));
     setFlag(cardInfo[i].original_language, arrISO, i);
     setScore(cardInfo[i].vote_average, i);
   }
+
+  $(".card").mouseover(function(){
+    $(this).addClass("animate");
+    $(this).find(".card-info").addClass("active");
+  });
+
+  $(".card").mouseleave(function(){
+    $(".card").removeClass("animate");
+    $(".card-info").removeClass("active");
+  });
 }
 
 //creo una funzione che converte il punteggio in un range da 1 a 5 e lo arrotonda

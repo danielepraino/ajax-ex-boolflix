@@ -33,10 +33,13 @@
       <div class="card" data-card="{{cardNum}}">
         <img class="card-img" src="{{img}}" alt="">
         <div class="card-info">
-          <h3>Titolo: <span>{{title}}</span></h3>
-          <h5>Titolo originale: <span>{{originalTitle}}</span></h5>
-          <p class="flag">Lingua: <span></span></p>
-          <div class="star-container">Voto:
+          <ul>
+            <li><strong>Titolo: </strong><span>{{title}}</span></li>
+            <li><strong>Titolo originale: </strong><span>{{originalTitle}}</span></li>
+            <li class="flag"><strong>Lingua: </strong><span></span></li>
+          </ul>
+          <div class="star-container">
+            <strong>Voto:</strong>
             <ul class="stars">
               <li class="star" data-star=1><i class="far fa-star"></i></li>
               <li class="star" data-star=2><i class="far fa-star"></i></li>
@@ -45,6 +48,7 @@
               <li class="star" data-star=5><i class="far fa-star"></i></li>
             </ul>
           </div>
+          <p><strong>Overview: </strong>{{overview}}</p>
         </div>
       </div>
     </script>
