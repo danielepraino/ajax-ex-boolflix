@@ -16,6 +16,8 @@ li {
   width: 100vw;
   height: 100vh;
   display: flex;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .menu {
@@ -47,7 +49,6 @@ li {
 
 .main {
   display: flex;
-  overflow-x: auto;
 }
 
 .input-search {
