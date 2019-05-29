@@ -45,14 +45,14 @@ function callIMBDAPI(titleName, arr, i){
 //gestisco il caso in cui non ci sia nessuna immagine caricandone una di default n/a
 function addCardData(obj, arr){
   var cardInfo = obj.results;
+  console.log("cardInfo.length: " + cardInfo.length);
+  if (cardInfo.length == 0 && arr == 0) {
+    $(".rail").html("<p class='noSearchResults'><span>OPS!</span><br> Sembra che tu abbia cercato qualcosa che non esiste!<br> Prova con un altro nome</p>");
+  }
   console.log(cardInfo);
   for (var i = 0; i < cardInfo.length; i++) {
     card.cardNum = i;
-    if (cardInfo[i].poster_path == null){
-      card.img = "img/notavaiable.jpg";
-    } else {
-      card.img = imgUrl + cardInfo[i].poster_path;
-    }
+    card.img = imgUrl + cardInfo[i].poster_path;
     if (arr == 0) {
       card.title = cardInfo[i].title;
       card.originalTitle = cardInfo[i].original_title;
@@ -60,14 +60,20 @@ function addCardData(obj, arr){
       card.title = cardInfo[i].name;
       card.originalTitle = cardInfo[i].original_name;
     }
+
     card.language = cardInfo[i].original_language;
     card.vote = cardInfo[i].vote_average;
+
     if (cardInfo[i].overview == ""){
       card.overview = "n/a";
     } else {
       card.overview = cardInfo[i].overview;
     }
-    $(".main").append(movieTemplate(card));
+    //se il film o telefilm non ha l'immagine non genero la card relativa
+    if (cardInfo[i].poster_path != null){
+      $(".rail").append(movieTemplate(card));
+      $(".arrow.right").addClass("show");
+    }
     setFlag(cardInfo[i].original_language, arrISO, i);
     setScore(cardInfo[i].vote_average, i);
   }
@@ -81,6 +87,8 @@ function addCardData(obj, arr){
     $(".card").removeClass("animate");
     $(".card-info").removeClass("active");
   });
+  //richiamo la funzione per calcolare tutti i dati che mi servono per fare lo slide delle cards
+  setTimeout(cardSlideCal, 500);
 }
 
 //creo una funzione che converte il punteggio in un range da 1 a 5 e lo arrotonda
@@ -125,13 +133,15 @@ function switchApiUrl(arr, i){
 //dopo di che prendo l'input dell'utente e l'array con il tipo di chiamata API
 //e li passo come parametro alla chiamata API
 function searchTitle(arr) {
-  $(".main").empty();
+  $(".rail").empty();
+  $(".arrow").removeClass("show");
   var searchedTitle = $(".input-search").val();
   if (searchedTitle != "") {
     for (var i = 0; i < arr.length; i++) {
       callIMBDAPI(searchedTitle, arr, i);
     }
   }
+  $(".input-search").val("");
 }
 
 //al click del bottone, o all'invio, faccio una chiamata all'API di IMDB e creo una card che contiene
@@ -145,3 +155,39 @@ $(".input-search").keypress(function(event) {
     searchTitle(queryArr);
   }
 });
+
+//creo una funzione per calcolarmi tutti dati che mi servono per creare lo slide dinamico che fa muovere le cards
+function cardSlideCal(){
+  viewPortWidth = $(window).width();
+  cardWidth = $(".card").width();
+  numCardinView = Math.floor(viewPortWidth / cardWidth);
+  railLength = Math.floor(($(".rail").children().length) / numCardinView);
+  railMove = viewPortWidth - cardWidth;
+}
+
+var slideCount = 0;
+
+//al click sulla freccia faccio i vari controlli per far si che lo slide si muova verso sinistra o verso destra
+//l'utente non può scorrere prima del primo elemento e dopo l'ultimo elemento
+//per facilitare la comprensione di questo meccanismo elimino la freccia sinistra o destra
+$(".arrow").click(function(){
+  if ($(this).hasClass("right") && slideCount < railLength) {
+    slideCount++;
+    $(".rail").css({"left": -(railMove * slideCount)});
+  } else if ($(this).hasClass("left") && slideCount > 0) {
+    slideCount--;
+    $(".rail").css({"left": -(railMove * slideCount)});
+  }
+  if (slideCount == railLength){
+    $(".arrow.right").removeClass("show");
+  } else if (slideCount == 0) {
+    $(".arrow.left").removeClass("show");
+  } else {
+    $(".arrow").addClass("show");
+  }
+});
+
+//richiamo di default l'API di IMDB per popolare Boolflix 
+for (var i = 0; i < queryArr.length; i++) {
+  callIMBDAPI("Star Trek", queryArr, i);
+}

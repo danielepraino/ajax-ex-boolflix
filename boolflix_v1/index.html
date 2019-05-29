@@ -13,18 +13,36 @@
   <body>
     <div class="container">
       <div class="boolflix-container">
-        <div class="menu">
-          <ul class="menu-icons">
-            <li><i class="fas fa-search"></i></li>
-            <li><i class="fas fa-home"></i></li>
-          </ul>
-        </div>
-        <div class="boolflix">
-          <div class="search">
-            <input class="input-search" type="search" placeholder="Cerca">
-            <button class="btn" type="button"><i class="fas fa-play"></i> Vai</button>
+        <nav class="navbar">
+          <div class="menu">
+            <div class="logo">
+              <h1>BOOLFLIX</h1>
+            </div>
+            <ul class="menu-list">
+              <li><strong>Home</strong></li>
+              <li>Serie TV</li>
+              <li>Film</li>
+              <li>Aggiunti di recente</li>
+              <li>La mia lista</li>
+            </ul>
           </div>
-          <div class="main"></div>
+          <div class="search">
+            <input class="input-search" type="search" placeholder="Titoli, persone, generi">
+            <button class="btn" type="button"><i class="fas fa-search"></i> Cerca</button>
+          </div>
+        </nav>
+        <div class="boolflix">
+          <div class="rail-container">
+            <div class="arrows">
+              <div class="arrow left">
+                <i class="fas fa-chevron-left"></i>
+              </div>
+              <div class="arrow right">
+                <i class="fas fa-chevron-right"></i>
+              </div>
+            </div>
+            <div class="rail"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -41,11 +59,11 @@
           <div class="star-container">
             <strong>Voto:</strong>
             <ul class="stars">
-              <li class="star" data-star=1><i class="far fa-star"></i></li>
-              <li class="star" data-star=2><i class="far fa-star"></i></li>
-              <li class="star" data-star=3><i class="far fa-star"></i></li>
-              <li class="star" data-star=4><i class="far fa-star"></i></li>
-              <li class="star" data-star=5><i class="far fa-star"></i></li>
+              <li class="star" data-star="1"><i class="far fa-star"></i></li>
+              <li class="star" data-star="2"><i class="far fa-star"></i></li>
+              <li class="star" data-star="3"><i class="far fa-star"></i></li>
+              <li class="star" data-star="4"><i class="far fa-star"></i></li>
+              <li class="star" data-star="5"><i class="far fa-star"></i></li>
             </ul>
           </div>
           <p><strong>Overview: </strong>{{overview}}</p>
