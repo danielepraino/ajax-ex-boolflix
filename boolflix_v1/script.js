@@ -45,7 +45,6 @@ function callIMBDAPI(titleName, arr, i){
 //gestisco il caso in cui non ci sia nessuna immagine caricandone una di default n/a
 function addCardData(obj, arr){
   var cardInfo = obj.results;
-  console.log("cardInfo.length: " + cardInfo.length);
   if (cardInfo.length == 0 && arr == 0) {
     $(".rail").html("<p class='noSearchResults'><span>OPS!</span><br> Sembra che tu abbia cercato qualcosa che non esiste!<br> Prova con un altro nome</p>");
   }
@@ -124,7 +123,6 @@ function setFlag(titleLanguage, arr, j){
 //creo una funzione per lo switch dell'url dell'API, tra movie e tv
 function switchApiUrl(arr, i){
     var apiUrl = "https://api.themoviedb.org/3/search/" + arr[i];
-    console.log("apiUrl: " + apiUrl);
     return apiUrl;
 }
 
@@ -133,10 +131,13 @@ function switchApiUrl(arr, i){
 //dopo di che prendo l'input dell'utente e l'array con il tipo di chiamata API
 //e li passo come parametro alla chiamata API
 function searchTitle(arr) {
+  slideCount = 0;
+  $(".rail").css({"left": 0});
   $(".rail").empty();
   $(".arrow").removeClass("show");
   var searchedTitle = $(".input-search").val();
   if (searchedTitle != "") {
+    console.log("slideCount: " + slideCount);
     for (var i = 0; i < arr.length; i++) {
       callIMBDAPI(searchedTitle, arr, i);
     }
@@ -165,11 +166,11 @@ function cardSlideCal(){
   railMove = viewPortWidth - cardWidth;
 }
 
-var slideCount = 0;
-
 //al click sulla freccia faccio i vari controlli per far si che lo slide si muova verso sinistra o verso destra
 //l'utente non può scorrere prima del primo elemento e dopo l'ultimo elemento
 //per facilitare la comprensione di questo meccanismo elimino la freccia sinistra o destra
+var slideCount = 0;
+
 $(".arrow").click(function(){
   if ($(this).hasClass("right") && slideCount < railLength) {
     slideCount++;
@@ -187,7 +188,7 @@ $(".arrow").click(function(){
   }
 });
 
-//richiamo di default l'API di IMDB per popolare Boolflix 
+//richiamo di default l'API di IMDB per popolare Boolflix
 for (var i = 0; i < queryArr.length; i++) {
   callIMBDAPI("Star Trek", queryArr, i);
 }
