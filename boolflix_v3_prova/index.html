@@ -33,24 +33,30 @@
             <button class="btn" type="button"><i class="fas fa-search"></i> Cerca</button>
           </div>
         </nav>
-        <div class="boolflix">
-          <div class="rail-container">
-            <div class="arrows">
-              <div class="arrow left">
-                <i class="fas fa-chevron-left"></i>
-              </div>
-              <div class="arrow right">
-                <i class="fas fa-chevron-right"></i>
-              </div>
-            </div>
-            <div class="rail"></div>
-          </div>
-        </div>
+
+        <div class="boolflix"></div>
       </div>
     </div>
 
+    <script id="rail-template" type="text/x-handlebars-template">
+      <div class="rail-title">
+        <h2>Film e serie TV</h2>
+      </div>
+      <div class="rail-container">
+        <div class="arrows">
+          <div class="arrow left">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+          <div class="arrow right">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+        <div class="rail"></div>
+      </div>
+    </script>
+
     <script id="card-template" type="text/x-handlebars-template">
-      <div class="card" data-card="{{cardNum}}">
+      <div class="card" data-card="{{dataCard}}">
         <img class="card-img" src="{{img}}" alt="">
         <div class="card-info">
           <ul>
@@ -77,7 +83,5 @@
     </script>
 
     <script src="script.js" charset="utf-8"></script>
-
-    </script>
   </body>
 </html>

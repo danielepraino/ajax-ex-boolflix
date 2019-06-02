@@ -1,3 +1,4 @@
+moment.locale("it");
 //dichiaro le variabili per la chiamata API
 var queryArr = ["movie", "tv"];
 var imgUrl = "https://image.tmdb.org/t/p/w300";
@@ -133,6 +134,7 @@ function addCardData(obj, arr){
       callCreditsAPI(card.cardId, "tv", i);
       callGenresAPI(card.cardId, "tv", i);
     }
+    card.releaseDate = moment(cardInfo[i].release_date).format('L');
     card.language = cardInfo[i].original_language;
     card.vote = cardInfo[i].vote_average;
 
